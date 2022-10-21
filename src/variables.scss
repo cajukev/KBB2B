@@ -1,0 +1,35 @@
+/* Variables and mixins declared here will be available in all other SCSS files */
+
+
+$header-font:"Segoe UI", Candara, "Bitstream Vera Sans", "DejaVu Sans", "Bitstream Vera Sans", "Trebuchet MS", Verdana, "Verdana Ref", sans-serif;
+$other-font:Frutiger, "Frutiger Linotype", Univers, Calibri, "Gill Sans", "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+$bg1:#EDEDF6;
+$main-color:#0400C7;
+$main-color-025:#0300c73a;
+
+$accent-color:#ff7b00;
+$accent-color-025:#ff7e052d;
+$accent-color2:#A6AEF2;
+
+$header-font-size: clamp(32px,4vw,64px);
+$subheader-font-size: clamp(20px, 2vw, 32px);
+$base-font-size: clamp(16px,1.6vw,22px);
+$mini-font-size: clamp(12px,1.2vw,16px);
+
+$line: 2px solid rgb(255, 255, 255);
+
+/* Breakpoints */
+
+$breakpoint-1: 320px;
+$breakpoint-2: 640px;
+$breakpoint-3: 768px;
+$breakpoint-4: 1024px;
+$breakpoint-5: 1314px;
+$breakpoint-6: 1536px;
+$breakpoint-1-1: 319px;
+$breakpoint-2-1: 639px;
+$breakpoint-3-1: 767px;
+$breakpoint-4-1: 1023px;
+$breakpoint-5-1: 1313px;
+$breakpoint-6-1: 1535px;

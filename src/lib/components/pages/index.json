@@ -1,0 +1,18 @@
+{
+  "fr": {
+    "title":"<span class='stagger fly-up'>Votre</span> <span class='stagger fly-up'>organisation</span> <span class='stagger fly-up'>est</span> <span class='underline bold stagger fly-up'>unique</span>",
+    "description":"Votre site web devrait l'être aussi.",
+    "hook":"En faisant affaire avec moi, profitez:",
+    "section2.title":"Enchantez les visiteurs de votre site et augmentez vos conversions",
+    "section2.list":"<li>D'un site web qui répond à vos besoins et à ceux de vos clients.</li><li>d'une présence web captivante et qui amène l'utilisateur à agir.</li><li>de composantes web modernes et performantes.</li>",
+    "section2.quote":"Quelques unes de mes créations personnelles."
+  },
+  "en": {
+    "title":"<span class='stagger fly-up'>Your</span> <span class='stagger fly-up'>organization</span> <span class='stagger fly-up'>is</span> <span class='underline bold stagger fly-up'>unique</span>",
+    "description":"Its website should be unique as well.",
+    "hook":"When working with me, you can expect:",
+    "section2.title":"Impress your visitors and improve your conversions",
+    "section2.list":"<li>A website that meets your needs and those of your customers.</li><li>A captivating web presence that encourages users to take action.</li><li>Modern and performant web components.</li>",
+    "section2.quote":"Some of my personal creations."
+  }
+}
