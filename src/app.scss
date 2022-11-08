@@ -9,7 +9,7 @@
 html {
   background-color: $bg1;
   overflow-x: hidden;
-}	
+}
 
 body {
   padding: 0;
@@ -23,6 +23,17 @@ body {
 h1 {
   font-size: $header-font-size;
   font-weight: 500;
+}
+
+input, textarea {
+  font-size: $base-font-size;
+  font-family: $other-font;
+  border-color: $accent-color2;
+  border-style: solid;
+  border-radius: 0.25rem;
+  border-width: 1px;
+  padding: 0.25rem 0.5rem;
+  outline-color: #f27c0f;
 }
 
 // Breakpoints
@@ -102,16 +113,24 @@ h1 {
   }
 }
 
-
 // Utilities
 
 .squares {
-  & div{
+  & div {
     height: clamp(3rem, 7vw, 5rem);
     width: clamp(3rem, 7vw, 5rem);
     background-color: $accent-color2;
-    border-radius:25%;
-    box-shadow: 0px 0px 1.5rem rgba(40, 40, 40, 0.17);
+    border-radius: 25%;
+    box-shadow: $box-shadow-1;
+    
+  }
+  & .special {
+    background: linear-gradient(135deg, #ff9c41 0%, #f27c0f 100%);
+    box-shadow: 0px 0px 3rem rgba(233, 111, 0, 0.6);
+    animation-name: spin;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-fill-mode: forwards;
   }
 }
 
@@ -125,38 +144,73 @@ h1 {
   font-weight: 900;
 }
 
-.stagger{
+.orange-text{
+  color: $accent-color;
+}
+
+.stagger {
   opacity: 0;
   display: inline-block;
   animation: 1.5s ease forwards;
 }
 
-.frame{
-  background: linear-gradient(180deg, #F6F6FA 0%, #F1F1F8 100%);
+.frame {
+  background: linear-gradient(180deg, #f6f6fa 0%, #f1f1f8 100%);
   border: 0.3rem solid $accent-color2;
-  box-shadow: 0px 0px 1.5rem rgba(40, 40, 40, 0.17);
+  box-shadow: $box-shadow-1;
 }
 
-/* PARALLAX by Max Paga / 2022 */
-
-.wrapper {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  min-height: 50vh;
-  max-height: 100vh;
-  overflow: hidden;
+.frame-special {
+  background: linear-gradient(180deg, #f6f6fa 0%, #f1f1f8 100%);
+  outline: 0.4rem solid $accent-color;
+  border: 0.1rem solid $accent-color;
+  box-shadow: $box-shadow-1;
 }
 
-.parallax {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  max-height: none;
-  object-fit: cover;
-  transition: none;
+.btn {
+  border-radius: 100vw;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  box-shadow: $box-shadow-2;
+  cursor: pointer;
+  &-primary {
+    background-color: $accent-color;
+    color: black;
+    font-weight: 900;
+  }
+  &-secondary {
+    background-color: $accent-color2;
+    color: black;
+    font-weight: 700;
+  }
 }
 
+#section2 li {
+  margin-top: 0.75rem;
+  display: list-item;
+}
+
+// https://dev.to/miacan2021/fade-in-animation-on-scroll-with-intersectionobserver-vanilla-js-4p27
+
+.appear {
+  transition: all 0.8s;
+  opacity: 0;
+}
+
+.appear.inview {
+  transition-delay: 0.3s;
+  animation: fade-up 1s 0.15s cubic-bezier(0, 0.68, 0.59, 1.01) forwards;
+}
+
+.appear2 {
+  transition: all 0.8s;
+  opacity: 0;
+}
+
+.appear2.inview {
+  transition-delay: 0.3s;
+  animation: fly-up 1s 0.5s cubic-bezier(0, 0.68, 0.59, 1.01) forwards;
+}
 
 // Animations
 
@@ -172,30 +226,40 @@ h1 {
   }
 }
 
-@keyframes spin{
-  50%{
+@keyframes spin {
+  50% {
     transform: scale(1.3) rotate(180deg);
   }
-  100%{
+  100% {
     transform: rotate(360deg);
   }
 }
-@keyframes fade-up{
-  0%{
+@keyframes fade-up {
+  0% {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(1rem);
   }
-  100%{
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes fade-down {
+  0% {
+    opacity: 0;
+    transform: translateY(-1rem);
+  }
+  100% {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-@keyframes fly-up{
-  0%{
+@keyframes fly-up {
+  0% {
     transform: translate(0px, 400px) scale(1.3, 0.8);
-  } 
-  100%{
+  }
+  100% {
     opacity: 1;
     transform: translateY(0px);
   }
@@ -203,23 +267,23 @@ h1 {
 .fly-up {
   transform-origin: bottom center;
   opacity: 0;
-  animation: fly-up 1.5s cubic-bezier(0,.68,.59,1.01) forwards 0.25s;
+  animation: fly-up 1.5s cubic-bezier(0, 0.68, 0.59, 1.01) forwards 0.25s;
 }
 
-@keyframes fly-up-separator{
-  0%{
+@keyframes fly-up-separator {
+  0% {
     transform: translate(0px, 400px) scale(1.3, 0.8);
-  } 
-  100%{
+  }
+  100% {
     opacity: 1;
     transform: translateY(0px) scale(2, 1);
   }
 }
-@keyframes fly-up-arrow{
-  0%{
+@keyframes fly-up-arrow {
+  0% {
     transform: translate(-50%, 400px) scale(1.3, 0.8);
-  } 
-  100%{
+  }
+  100% {
     opacity: 1;
     transform: translate(-50%, 0px) scale(1);
   }

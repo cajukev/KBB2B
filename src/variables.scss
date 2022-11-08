@@ -6,16 +6,19 @@ $other-font:Frutiger, "Frutiger Linotype", Univers, Calibri, "Gill Sans", "Gill 
 
 $bg1:#EDEDF6;
 $main-color:#0400C7;
-$main-color-025:#0300c73a;
+$main-color-025:#01003a3a;
 
 $accent-color:#ff7b00;
 $accent-color-025:#ff7e052d;
-$accent-color2:#A6AEF2;
+$accent-color2:#a6ace6;
 
 $header-font-size: clamp(32px,4vw,64px);
 $subheader-font-size: clamp(20px, 2vw, 32px);
 $base-font-size: clamp(16px,1.6vw,22px);
 $mini-font-size: clamp(12px,1.2vw,16px);
+
+$box-shadow-1: 0px 0px 1.5rem rgba(40, 40, 40, 0.17); 
+$box-shadow-2: 0px 0.25rem 0.5rem rgba(40, 40, 40, 0.17); 
 
 $line: 2px solid rgb(255, 255, 255);
 
