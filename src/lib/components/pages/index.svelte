@@ -13,7 +13,6 @@
   // Get current ms
   let timeStart = new Date().getTime();
 
-
   onMount(() => {
     // Section 1 Stagger
     let titleWords = document.getElementById("section1").getElementsByClassName("stagger");
@@ -58,7 +57,7 @@
   });
 
   let onSqClick = (index) => {
-    if(index === currentSquare) return;
+    if (index === currentSquare) return;
     let timePassed = new Date().getTime() - timeStart;
 
     document
@@ -71,12 +70,33 @@
       .getElementsByClassName("squares")[0]
       .getElementsByTagName("div")
       [index].classList.add("special");
-      document
-      .getElementById("section2")
-      .getElementsByClassName("squares")[0]
-      .getElementsByTagName("div")
-      [index].style.animationDelay = `${-timePassed/1000%6}s`;
+    document.getElementById("section2").getElementsByClassName("squares")[0].getElementsByTagName("div")[
+      index
+    ].style.animationDelay = `${(-timePassed / 1000) % 6}s`;
     currentSquare = index;
+  };
+
+  let siteHover = (i) => {
+    const content = document.getElementById("section3").getElementsByClassName("content")[i];
+    content.getElementsByClassName("bg")[0].style.opacity = 1;
+    content.getElementsByClassName("bg")[0].style.transform = "scaleX(1)";
+    content.getElementsByClassName("text")[0].style.opacity = 1;
+    content.getElementsByClassName("text")[0].style.transform = "translateY(0)";
+    content.getElementsByClassName("left")[0].style.opacity = 1;
+    content.getElementsByClassName("left")[0].style.transform = "translateX(0)";
+    content.getElementsByClassName("right")[0].style.opacity = 1;
+    content.getElementsByClassName("right")[0].style.transform = "translateX(0)";
+  };
+  let siteLeave = (i) => {
+    const content = document.getElementById("section3").getElementsByClassName("content")[i];
+    content.getElementsByClassName("left")[0].style.opacity = 0;
+    content.getElementsByClassName("left")[0].style.transform = "translateX(-1rem)";
+    content.getElementsByClassName("text")[0].style.opacity = 0;
+    content.getElementsByClassName("text")[0].style.transform = "translateY(1rem)";
+    content.getElementsByClassName("right")[0].style.opacity = 0;
+    content.getElementsByClassName("right")[0].style.transform = "translateX(1rem)";
+    content.getElementsByClassName("bg")[0].style.opacity = 0;
+    content.getElementsByClassName("bg")[0].style.transform = "scaleX(0.75)";
   };
 </script>
 
@@ -87,6 +107,7 @@
     <div class="sq3 special" />
     <div class="sq4" />
     <div class="sq5 bp2" />
+    <span class="light" />
   </div>
   <div class="content">
     <h1>{@html t.title}</h1>
@@ -130,59 +151,108 @@
 </div>
 
 <div class="section" id="section3">
-  <div class="frame appear2">
-    <h1>{t["section3.heading"]}</h1>
-    <svg viewBox="0 0 330 103" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path
-        d="M1.50012 72.7099V74.2099H3.00012H39.2876H40.7876V72.7099V54.1313V52.6313H39.2876H3.00012H1.50012V54.1313V72.7099ZM85.8209 38.1722L86.5246 28.3137H116.971H118.471V26.8137V5.32216V3.82216H116.971H63.236H61.8293L61.7391 5.22595L58.1568 60.9616L58.0292 62.9468L59.9729 62.5235C64.8077 61.4704 70.0729 60.9395 75.7741 60.9395C81.4697 60.9395 85.4946 61.7861 88.049 63.2892C90.4797 64.7196 91.6549 66.7802 91.6549 69.6674C91.6549 72.3413 90.6237 74.3083 88.5261 75.7446L88.5159 75.7517C86.4022 77.2249 83.0912 78.0717 78.3613 78.0717C71.2198 78.0717 64.4471 76.405 58.0243 73.0624L55.8318 71.9213V74.393V95.8845V96.9312L56.8142 97.2924C59.9915 98.4607 63.9888 99.4079 68.7777 100.15L68.7798 100.151C73.6239 100.895 78.2777 101.269 82.7397 101.269C90.7888 101.269 97.8544 99.8343 103.892 96.9109C109.918 93.9932 114.57 89.9014 117.786 84.6258C121.036 79.3244 122.65 73.3536 122.65 66.7544C122.65 58.0015 119.899 50.9282 114.278 45.7185C108.664 40.472 100.983 37.9368 91.4301 37.9368C89.6484 37.9368 87.7785 38.0156 85.8209 38.1722ZM142.328 89.2387L142.331 89.2429C148.745 97.3288 158.367 101.269 170.904 101.269C183.235 101.269 192.783 96.9648 199.304 88.2387C205.813 79.545 208.957 67.0459 208.957 50.9594C208.957 35.0882 206.031 22.9124 199.94 14.6744C193.786 6.3518 184.568 2.26855 172.563 2.26855C159.849 2.26855 149.935 6.58219 143.057 15.3353L143.054 15.3392C136.264 24.0377 132.984 36.6133 132.984 52.8367C132.984 68.9837 136.008 81.2124 142.328 89.2387ZM283.418 94.0991L283.424 94.1045C288.088 98.7021 294.241 100.945 301.725 100.945C309.778 100.945 316.339 98.5537 321.23 93.6415C326.113 88.7383 328.5 82.2693 328.5 74.393C328.5 66.7564 326.281 60.6101 321.676 56.1622C317.129 51.7264 310.945 49.5889 303.317 49.5889C295.353 49.5889 288.824 51.9575 283.894 56.8123C278.949 61.6371 276.542 68.1398 276.542 76.1408C276.542 83.464 278.802 89.5013 283.418 94.0991ZM306.585 68.8882L306.59 68.8953L306.595 68.9024C307.552 70.2869 308.119 72.3419 308.119 75.2345C308.119 78.2151 307.529 80.2999 306.543 81.6751L306.535 81.6855L306.528 81.6961C305.644 82.9739 304.384 83.6388 302.521 83.6388C300.705 83.6388 299.496 82.9972 298.659 81.7791C297.778 80.4316 297.254 78.432 297.254 75.6229C297.254 72.6488 297.842 70.5012 298.85 69.0247L298.855 69.018L298.86 69.0111C299.81 67.5876 301.102 66.895 302.919 66.895C304.483 66.895 305.661 67.5187 306.585 68.8882ZM252.767 99.6502H253.575L254.019 98.9755L315.184 6.14747L316.716 3.82216H313.931H293.035H292.227L291.782 4.49686L230.617 97.3249L229.085 99.6502H231.87H252.767ZM223.912 47.1672L223.918 47.1726C228.582 51.7702 234.735 54.013 242.219 54.013C250.14 54.013 256.627 51.6654 261.515 46.8492C266.454 41.9832 268.861 35.4625 268.861 27.4611C268.861 19.9039 266.638 13.7685 262.049 9.24188C257.503 4.71369 251.315 2.52749 243.678 2.52749C235.58 2.52749 229.013 4.94112 224.163 9.90579L224.163 9.90604C219.372 14.8125 217.036 21.3006 217.036 29.2089C217.036 36.5321 219.295 42.5694 223.912 47.1672ZM246.917 21.9121L246.929 21.9306L246.941 21.9488C247.87 23.3431 248.414 25.3683 248.414 28.1731C248.414 31.2589 247.839 33.391 246.889 34.7642C245.993 36.0604 244.765 36.7069 243.015 36.7069C241.198 36.7069 239.99 36.0653 239.153 34.8471C238.272 33.4997 237.748 31.5001 237.748 28.691C237.748 25.7169 238.336 23.5693 239.344 22.0928L239.349 22.0861L239.353 22.0793C240.303 20.6557 241.596 19.9631 243.413 19.9631C244.972 19.9631 246.084 20.5793 246.917 21.9121ZM176.168 30.9364C177.429 35.1184 178.095 41.7542 178.095 50.9594C178.095 60.4579 177.369 67.4312 175.987 71.9827C174.573 76.6385 172.724 78.0717 170.904 78.0717C169.878 78.0717 168.994 77.7005 168.186 76.8631C167.34 75.9864 166.553 74.5676 165.905 72.4705C164.644 68.1971 163.979 61.4947 163.979 52.2541C163.979 42.8423 164.705 35.9353 166.086 31.4286C167.497 26.8244 169.342 25.4007 171.17 25.4007C172.23 25.4007 173.125 25.7755 173.926 26.5983C174.768 27.4617 175.543 28.8611 176.168 30.9364Z"
-        fill="#FF7C05"
-        stroke="white"
-        stroke-width="3"
-      />
-    </svg>
-    <p>{t["section3.description"]}</p>
+  <h2 class="appear">{t["section3.title"]}</h2>
+  <div class="frame appear" id="site1">
+    <div
+      class="content"
+      on:pointerdown={() => siteHover(0)}
+      on:pointerover={() => siteHover(0)}
+      on:mouseleave={() => siteLeave(0)}
+    >
+      <div class="bg" />
+      <div class="left">
+        <svg viewBox="0 0 94 112" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M87.2535 14.8189C76.8535 -0.0662155 56.3135 -4.47821 41.4621 4.98409L15.3794 21.6078C11.8559 23.8245 8.83366 26.752 6.5059 30.2032C4.17814 33.6543 2.59606 37.5532 1.86081 41.6506C0.616612 48.5524 1.71019 55.6721 4.96841 61.8824C2.73579 65.2691 1.21305 69.0734 0.492215 73.0653C-0.250831 77.2452 -0.151746 81.5314 0.783656 85.6725C1.71906 89.8136 3.47195 93.7263 5.93951 97.181C16.3417 112.067 36.8818 116.478 51.7309 107.016L77.8136 90.3921C81.3374 88.1756 84.3598 85.2482 86.6876 81.797C89.0154 78.3458 90.5973 74.4468 91.3322 70.3493C92.5763 63.4475 91.4835 56.328 88.2269 50.117C90.459 46.7303 91.9811 42.9262 92.7012 38.9346C93.4447 34.7547 93.3459 30.4684 92.4105 26.3272C91.4751 22.186 89.7219 18.2734 87.2539 14.8189"
+            fill="#FF3E00"
+          />
+          <path
+            d="M38.9142 98.5816C34.8096 99.6489 30.4763 99.4308 26.4997 97.9567C22.523 96.4827 19.0944 93.8238 16.6771 90.339C15.1929 88.2616 14.1386 85.9087 13.5759 83.4183C13.0132 80.9279 12.9536 78.3502 13.4005 75.8365C13.5519 75.0112 13.7601 74.1974 14.0238 73.4008L14.515 71.903L15.8513 72.8845C18.9374 75.1521 22.388 76.8761 26.0543 77.9823L27.0237 78.2764L26.9344 79.2439C26.816 80.6203 27.1887 81.9942 27.9864 83.122C28.7139 84.1717 29.746 84.9728 30.9433 85.4172C32.1406 85.8616 33.4455 85.9279 34.6816 85.607C35.2485 85.4555 35.7888 85.2181 36.2837 84.9029L62.3671 68.2811C63.0053 67.8792 63.5529 67.3488 63.9748 66.7237C64.3967 66.0985 64.6838 65.3923 64.8177 64.6501C64.9516 63.8924 64.9332 63.1157 64.7636 62.3652C64.5941 61.6147 64.2768 60.9055 63.8302 60.2789C63.1023 59.229 62.0698 58.4277 60.8721 57.983C59.6744 57.5384 58.3691 57.4719 57.1324 57.7925C56.5663 57.944 56.0267 58.1813 55.5324 58.4961L45.5792 64.841C43.9425 65.8816 42.1564 66.666 40.2827 67.1669C36.1782 68.2341 31.8449 68.016 27.8683 66.5419C23.8917 65.0679 20.4632 62.4089 18.0459 58.9242C16.5617 56.8468 15.5073 54.4939 14.9446 52.0036C14.3819 49.5132 14.3223 46.9355 14.7693 44.4218C15.2114 41.958 16.1628 39.6135 17.5627 37.5383C18.9626 35.4632 20.7803 33.703 22.8993 32.3705L48.9804 15.7473C50.6178 14.705 52.4052 13.9196 54.2804 13.4186C58.385 12.3514 62.7182 12.5696 66.6948 14.0436C70.6714 15.5177 74.0998 18.1765 76.5171 21.6612C78.0013 23.7386 79.0557 26.0916 79.6183 28.5819C80.181 31.0723 80.2406 33.65 79.7937 36.1637C79.6417 36.9889 79.4335 37.8027 79.1704 38.5994L78.6792 40.0972L77.3436 39.1172C74.2578 36.8484 70.8069 35.1235 67.1399 34.0172L66.1705 33.723L66.2598 32.7555C66.3773 31.3793 66.0047 30.0058 65.2078 28.8775C64.4803 27.8278 63.4483 27.0267 62.2509 26.5823C61.0536 26.1379 59.7488 26.0717 58.5126 26.3925C57.9458 26.544 57.4055 26.7815 56.9105 27.0966L30.8271 43.7191C30.189 44.1207 29.6417 44.6509 29.22 45.2759C28.7984 45.901 28.5118 46.6071 28.3784 47.3491C28.2438 48.1067 28.2616 48.8836 28.4308 49.6343C28.6 50.3849 28.9173 51.0943 29.364 51.7208C30.092 52.7707 31.1244 53.5721 32.3221 54.0167C33.5199 54.4613 34.8251 54.5278 36.0618 54.2072C36.6285 54.0554 37.1688 53.818 37.6638 53.5031L47.6157 47.1606C49.2517 46.1186 51.0377 45.3336 52.9116 44.8328C57.0162 43.7656 61.3494 43.9838 65.326 45.4578C69.3027 46.9319 72.7311 49.5908 75.1484 53.0755C76.6327 55.1529 77.6871 57.5058 78.2497 59.9962C78.8124 62.4865 78.872 65.0642 78.425 67.5779C77.9827 70.0419 77.0312 72.3866 75.6313 74.462C74.2314 76.5374 72.4139 78.2979 70.295 79.6311L44.2138 96.2529C42.5764 97.2953 40.789 98.0806 38.9138 98.5816"
+            fill="white"
+          />
+        </svg>
+      </div>
+      <div class="text">
+        <p class="title">{t["section3.1.title"]}</p>
+        <a href={t["section3.1.link"]}>{t["section3.1.link"]}</a>
+        <p class="textContent">{@html t["section3.1.content"]}</p>
+      </div>
+      <div class="right">
+        <svg viewBox="0 0 109 112" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M63.683 110.073C60.8235 113.674 55.0256 111.701 54.9567 107.103L53.9492 39.8516H99.1689C107.359 39.8516 111.927 49.3117 106.834 55.7263L63.683 110.073Z"
+            fill="url(#paint0_linear_557_15)"
+          />
+          <path
+            d="M63.683 110.073C60.8235 113.674 55.0256 111.701 54.9567 107.103L53.9492 39.8516H99.1689C107.359 39.8516 111.927 49.3117 106.834 55.7263L63.683 110.073Z"
+            fill="url(#paint1_linear_557_15)"
+            fill-opacity="0.2"
+          />
+          <path
+            d="M45.2923 1.85985C48.1518 -1.74155 53.9498 0.231756 54.0187 4.82982L54.4602 72.081H9.80647C1.61572 72.081 -2.95241 62.6209 2.14084 56.2063L45.2923 1.85985Z"
+            fill="#3ECF8E"
+          />
+          <defs>
+            <linearGradient
+              id="paint0_linear_557_15"
+              x1="53.9492"
+              y1="54.7629"
+              x2="94.1389"
+              y2="71.6184"
+              gradientUnits="userSpaceOnUse"
+            >
+              <stop stop-color="#249361" />
+              <stop offset="1" stop-color="#3ECF8E" />
+            </linearGradient>
+            <linearGradient
+              id="paint1_linear_557_15"
+              x1="36.1312"
+              y1="30.3669"
+              x2="54.4598"
+              y2="64.8695"
+              gradientUnits="userSpaceOnUse"
+            >
+              <stop />
+              <stop offset="1" stop-opacity="0" />
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+    </div>
   </div>
 </div>
 
 <div class="section" id="section4">
-  <div class="options">
-    <div class="frame appear" id="option1">
-      <p class="name"><b>{@html t["section4.1.name"]}</b></p>
-      <p class="price">{@html t["section4.1.price"]}</p>
+  <h2 class="appear">{t["section4.title"]}</h2>
+  <div class="content">
+    <div class="frame">
+      <h2>{t["section4.1.title"]}</h2>
       <p class="description">{@html t["section4.1.description"]}</p>
-      <button class="btn btn-secondary">{t["cta"]}</button>
+      <p>{t["section4.includes"]}</p>
+      <p>{@html t["section4.1.content"]}</p>
     </div>
-    <div class="frame appear" id="option2">
-      <p class="name"><b>{@html t["section4.2.name"]}</b></p>
-      <p class="price">{@html t["section4.2.price"]}</p>
+    <div class="frame frame-special">
+      <h2>{t["section4.2.title"]}</h2>
       <p class="description">{@html t["section4.2.description"]}</p>
-      <button class="btn btn-secondary">{t["cta"]}</button>
+      <p>{t["section4.includes"]}</p>
+      <p>{@html t["section4.2.content"]}</p>
     </div>
-    <div class="frame-special appear" id="option3">
-      <p class="name"><b>{@html t["section4.3.name"]}</b></p>
-      <p class="price">{@html t["section4.3.price"]}</p>
-      <p class="description">{@html t["section4.3.description"]}</p>
-      <button class="btn btn-primary">{t["cta"]}</button>
-    </div>
-    <div class="frame appear" id="option4">
-      <p class="name"><b>{t["section4.4.name"]}</b></p>
-      <p class="price">{t["section4.4.price"]}</p>
-      <button class="btn btn-secondary">{t["cta"]}</button>
-    </div>
+    <div class="frame" />
+    <div class="frame frame-special" />
   </div>
 </div>
 
 <div class="section" id="section5">
-    <h2 class="appear">{t["section5.title"]}</h2>
-    <form class="appear">
-      <label for="name">{t["section5.form.name.label"]}</label>
-      <input type="text" id="name" name="name" placeholder="{t["section5.form.name.placeholder"]}" required>
-      <label for="comm">{t["section5.form.comm.label"]}</label>
-      <input type="email" id="comm" name="comm" placeholder="{t["section5.form.comm.placeholder"]}" required>
-      <label for="message">{t["section5.form.times.label"]}</label>
-      <textarea id="message" name="message" placeholder="{t["section5.form.times.placeholder"]}" required></textarea>
-    </form>
-    <button class="btn btn-primary appear">{t["send"]}</button>
+  <h2 class="appear">{t["section5.title"]}</h2>
+  <form class="appear">
+    <label for="name">{t["section5.form.name.label"]}</label>
+    <input type="text" id="name" name="name" placeholder={t["section5.form.name.placeholder"]} required />
+    <label for="comm">{t["section5.form.comm.label"]}</label>
+    <input type="email" id="comm" name="comm" placeholder={t["section5.form.comm.placeholder"]} required />
+    <label for="message">{t["section5.form.times.label"]}</label>
+    <textarea id="message" name="message" placeholder={t["section5.form.times.placeholder"]} required />
+  </form>
+  <button class="btn btn-primary appear">{t["send"]}</button>
 </div>
 
 <style lang="scss">
@@ -202,11 +272,12 @@
       background-color: white;
       z-index: -1;
       opacity: 0;
-      animation: fly-up-separator 1.75s 2s cubic-bezier(0, 0.68, 0.59, 1.01) forwards;
+      animation: fly-up-separator 1.75s 2.25s cubic-bezier(0, 0.68, 0.59, 1.01) forwards;
     }
   }
   #section1 {
     .squares {
+      position: relative;
       margin-top: 2rem;
       display: flex;
       align-items: center;
@@ -219,6 +290,23 @@
           animation-delay: 2s;
         }
       }
+      & .light {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        transform: scaleX(2) scaleY(1.3);
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0) 0%,
+          rgba(255, 255, 255, 0.615306) 23.96%,
+          rgba(255, 255, 255, 0.67) 51.04%,
+          rgba(255, 255, 255, 0.625824) 71.87%,
+          rgba(255, 255, 255, 0) 98.44%
+        );
+      }
     }
     .content {
       margin-top: 2rem;
@@ -230,7 +318,7 @@
       & p {
         margin-top: 1rem;
         opacity: 0;
-        animation-delay: 1.75s;
+        animation-delay: 2s;
       }
     }
     & .scrollArrow {
@@ -241,11 +329,9 @@
       width: 2rem;
       height: 2rem;
       opacity: 0;
-      animation: fly-up-arrow 1.5s 2.5s cubic-bezier(0.25, 1, 0.5, 1) forwards,
-        arrow-bounce 2s 3.75s ease-in-out infinite;
+      animation: fly-up-arrow 1.5s 2.75s cubic-bezier(0.25, 1, 0.5, 1) forwards, arrow-bounce 2s 4s ease-in-out infinite;
     }
   }
-
   #section2 {
     & .flavour {
       display: flex;
@@ -281,7 +367,8 @@
       opacity: 1;
       transform-origin: center;
 
-      & .frame, .flavour {
+      & .frame,
+      .flavour {
         animation: fly-up 1s 0s cubic-bezier(0, 0.68, 0.59, 1.01) forwards;
       }
     }
@@ -338,37 +425,78 @@
   }
   #section3 {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 2rem;
-    @media screen and (max-width: $breakpoint-3-1) {
-      padding: 3rem 1rem;
+    padding: 2rem 0rem;
+    @media screen and (max-width: $breakpoint-4-1) {
+      grid-template-columns: 1fr;
+      padding: 3rem 0rem;
     }
-    @media screen and (max-width: $breakpoint-2-1) {
-      padding: 3rem 0.5rem;
-    }
-    .frame {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      width: fit-content;
-      gap: 0.75rem;
-      padding: 1rem 3rem;
-      border: 0.25rem solid $accent-color2;
-      & h1 {
-        font-weight: 700;
-        text-align: center;
+    & .frame {
+      width: 100%;
+      margin-top: 4rem;
+      &#site1 {
+        background-image: url("/site-1.jpg");
+        background-size: cover;
       }
-      & svg {
-        width: 100%;
-        max-width: 15rem;
-        filter: drop-shadow(0px 0.125rem 0.15rem rgba(60, 62, 79, 0.19));
-      }
-      & p {
-        text-align: center;
-        max-width: 30rem;
-        line-height: 1.5;
+      & .content {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        & .bg {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(
+            90deg,
+            rgba($bg1, 0.2) 0%,
+            rgba($bg1, 0.8) 10%,
+            rgba($bg1, 1) 50%,
+            rgba($bg1, 0.8) 90%,
+            rgba($bg1, 0.2) 100%
+          );
+          z-index: 0;
+          opacity: 0;
+          transition: all 0.25s ease;
+        }
+        & .left,
+        .right {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: 100%;
+        }
+        & .text {
+          text-align: center;
+          max-width: 35rem;
+          margin: 0rem 0.5rem;
+          & .title {
+            margin-top: 1.5rem;
+            font-size: $subheader-font-size;
+            font-weight: 700;
+          }
+          & a {
+            margin-top: 0.25rem;
+          }
+          & .textContent {
+            margin-top: 1.5rem;
+            margin-bottom: 1.5rem;
+          }
+        }
+        & .left,
+        .text,
+        .right {
+          z-index: 1;
+          opacity: 0;
+          transition: all 0.25s ease;
+        }
+        & svg {
+          height: clamp(10rem, 20vw, 18rem);
+          padding: 1rem;
+        }
       }
     }
   }
@@ -380,57 +508,35 @@
     @media screen and (max-width: $breakpoint-2-1) {
       padding: 3rem 0.5rem;
     }
-    & .options {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    & .content {
+      margin-top: 4rem;
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      grid-template-rows: auto auto;
-      gap: 1rem;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
       justify-items: center;
-      @media screen and (max-width: $breakpoint-3-1) {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+      width: fit-content;
+      @media screen and (max-width: $breakpoint-2-1) {
+        grid-template-columns: 1fr;
       }
-      & #option1 {
-        grid-column: 1 / 2;
-        grid-row: 1 / 2;
-      }
-      & #option2 {
-        grid-column: 3 / 4;
-        grid-row: 1 / 3;
-      }
-      & #option3 {
-        grid-column: 2 / 3;
-        grid-row: 1 / 3;
-      }
-      & #option4 {
-        grid-column: 1 / 2;
-        grid-row: 2 / 3;
-      }
-    }
-    & .frame,
-    .frame-special {
-      padding: 1rem;
-      max-width: 25rem;
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      height: fit-content;
-      & .name{
-        line-height: 1.5;
-      }
-      & .price{
-        margin-top: 0.5rem;
-      }
-      & .description, button{
-        margin-top: 1rem;
+      & .frame {
+        width: 100%;
+        max-width: 35rem;
+        height: fit-content;
+        padding: 2rem 1rem;
+        & h2 {
+          margin-bottom: 1.5rem;
+        }
+        & .description {
+          margin-bottom: 1.5rem;
+        }
       }
     }
   }
 
-  #section5{
+  #section5 {
     padding: 2rem;
     @media screen and (max-width: $breakpoint-3-1) {
       padding: 3rem 1rem;
@@ -441,25 +547,22 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    & h2{
-      font-weight: 300;
-    }
-    & form{
+    & form {
       margin-top: 3rem;
       display: flex;
       flex-direction: column;
       max-width: 35rem;
       width: 100%;
-      & label{
+      & label {
         margin-top: 1rem;
         margin-bottom: 0.25rem;
       }
-      & textArea{
+      & textArea {
         resize: none;
         height: 10rem;
       }
     }
-    & button{
+    & button {
       margin-top: 1rem;
       width: fit-content;
     }

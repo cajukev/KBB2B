@@ -69,20 +69,11 @@
   // });
 </script>
 
-<div class="top-fade" />
 <div class="container">
   <slot />
 </div>
 
 <style lang="scss">
-  .top-fade {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 30rem;
-    background: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
-  }
   .container {
     position: relative;
     min-height: calc(100vh + 1px);

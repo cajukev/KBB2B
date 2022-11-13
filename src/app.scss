@@ -25,6 +25,14 @@ h1 {
   font-weight: 500;
 }
 
+h2 {
+  font-weight: 300;
+}
+
+h3{
+  font-weight: 500;
+}
+
 input, textarea {
   font-size: $base-font-size;
   font-family: $other-font;
@@ -162,8 +170,7 @@ input, textarea {
 
 .frame-special {
   background: linear-gradient(180deg, #f6f6fa 0%, #f1f1f8 100%);
-  outline: 0.4rem solid $accent-color;
-  border: 0.1rem solid $accent-color;
+  border: 0.4rem solid $accent-color;
   box-shadow: $box-shadow-1;
 }
 
@@ -185,7 +192,7 @@ input, textarea {
   }
 }
 
-#section2 li {
+#section2 li, #section4 li {
   margin-top: 0.75rem;
   display: list-item;
 }
