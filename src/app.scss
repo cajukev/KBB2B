@@ -157,8 +157,9 @@ input, textarea {
 }
 
 .stagger {
-  opacity: 0;
+  opacity: 0.01;
   display: inline-block;
+  transform: translate(0px, 500px) scale(1.3, 0.8);
   animation: 1.5s ease forwards;
 }
 
@@ -264,7 +265,7 @@ input, textarea {
 
 @keyframes fly-up {
   0% {
-    transform: translate(0px, 400px) scale(1.3, 0.8);
+    transform: translate(0px, 500px) scale(1.3, 0.8);
   }
   100% {
     opacity: 1;
@@ -273,13 +274,13 @@ input, textarea {
 }
 .fly-up {
   transform-origin: bottom center;
-  opacity: 0;
+  opacity: 0.1;
   animation: fly-up 1.5s cubic-bezier(0, 0.68, 0.59, 1.01) forwards 0.25s;
 }
 
 @keyframes fly-up-separator {
   0% {
-    transform: translate(0px, 400px) scale(1.3, 0.8);
+    transform: translate(0px, 500px) scale(1.3, 0.8);
   }
   100% {
     opacity: 1;
@@ -288,7 +289,7 @@ input, textarea {
 }
 @keyframes fly-up-arrow {
   0% {
-    transform: translate(-50%, 400px) scale(1.3, 0.8);
+    transform: translate(-50%, 500px) scale(1.3, 0.8);
   }
   100% {
     opacity: 1;
