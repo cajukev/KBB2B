@@ -275,7 +275,7 @@ input, textarea {
 .fly-up {
   transform-origin: bottom center;
   opacity: 0.1;
-  animation: fly-up 1.5s cubic-bezier(0, 0.68, 0.59, 1.01) forwards 0.25s;
+  animation: fly-up 1.2s cubic-bezier(0, 0.68, 0.59, 1.01) forwards 0.25s;
 }
 
 @keyframes fly-up-separator {
