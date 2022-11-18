@@ -162,7 +162,7 @@
       <source srcset="site-1-1200.webp" media="(max-width: 1200px)" type="image/webp" />
       <source srcset="site-1-1200.jpg" media="(max-width: 1200px)" type="image/jpeg" />
       <source srcset="site-1-1600.webp" type="image/webp" />
-      <img src="site-1-1600.jpg" alt="site1" />
+      <img src="site-1-1600.jpg" alt="site1" loading="lazy" />
     </picture>
     <div
       class="content"
@@ -291,7 +291,7 @@
       <source srcset="site-2-1200.webp" media="(max-width: 1200px)" type="image/webp" />
       <source srcset="site-2-1200.jpg" media="(max-width: 1200px)" type="image/jpeg" />
       <source srcset="site-2-1600.webp" type="image/webp" />
-      <img src="site-2-1600.jpg" alt="site1" />
+      <img src="site-2-1600.jpg" alt="site1" loading="lazy"/>
     </picture>
     <div
       class="content"
@@ -420,7 +420,7 @@
       <source srcset="site-3-1200.webp" media="(max-width: 1200px)" type="image/webp" />
       <source srcset="site-3-1200.jpg" media="(max-width: 1200px)" type="image/jpeg" />
       <source srcset="site-3-1600.webp" type="image/webp" />
-      <img src="site-3-1600.jpg" alt="site2" />
+      <img src="site-3-1600.jpg" alt="site2" loading="lazy"/>
     </picture>
     <div
       class="content"
