@@ -529,6 +529,10 @@
           opacity: 0.01;
           transition: all 0.25s ease;
         }
+        & .mobileImages{
+          display: flex;
+          justify-content: space-around;
+        }
         & .left,
         .right {
           display: flex;
