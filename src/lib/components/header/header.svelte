@@ -63,6 +63,9 @@
   }
   .left {
     display: flex;
+    @media screen and (max-width: $breakpoint-2-1) {
+      padding: 0 1rem;
+    }
   }
   .logo {
     width: $min-height;

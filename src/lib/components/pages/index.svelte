@@ -32,13 +32,7 @@
       let squareElem = section2.getElementsByClassName("squares")[0].getElementsByTagName("div")[currentSquare];
 
       squareElem.classList.add("special");
-      // Section 2 Stagger
-      let section2ListItems = section2.getElementsByTagName("li");
-      for (let i = 0; i < section2ListItems.length; i++) {
-        section2ListItems[i].classList.add("stagger");
-        section2ListItems[i].style.animationName = "fade-down";
-        section2ListItems[i].style.animationDelay = `${i * 0.5 + 0.5}s`;
-      }
+  
     });
 
     // Elements appear when scrolled into view Event Listener
@@ -320,7 +314,7 @@
       background-color: white;
       z-index: -1;
       opacity: 0.01;
-      animation: fly-up-separator 1.75s 2.25s cubic-bezier(0, 0.68, 0.59, 1.01) forwards;
+      animation: fly-up-separator 1.25s 2s cubic-bezier(0, 0.68, 0.59, 1.01) forwards;
     }
   }
   #section1 {
@@ -377,7 +371,7 @@
       width: 2rem;
       height: 2rem;
       opacity: 0.01;
-      animation: fly-up-arrow 1.5s 2.75s cubic-bezier(0.25, 1, 0.5, 1) forwards, arrow-bounce 2s 4s ease-in-out infinite;
+      animation: fly-up-arrow 1.25s 2s cubic-bezier(0, 0.68, 0.59, 1.01) forwards, arrow-bounce 2s 3.25s ease-in-out infinite;
     }
   }
   #section2 {
@@ -530,8 +524,10 @@
           transition: all 0.25s ease;
         }
         & .mobileImages{
-          display: flex;
-          justify-content: space-around;
+          @media screen and (max-width: $breakpoint-3-1) {
+            display: flex;
+            justify-content: space-around;
+          }
         }
         & .left,
         .right {
