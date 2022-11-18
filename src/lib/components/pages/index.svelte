@@ -50,7 +50,7 @@
         }
       });
     };
-    const io = new IntersectionObserver(cb, { threshold: 0.33 });
+    const io = new IntersectionObserver(cb, { rootMargin: "0px 0px -100px 0px" });
     appear.forEach((el) => {
       io.observe(el);
     });
@@ -601,7 +601,7 @@
       height: 2px;
       background-color: white;
       z-index: -1;
-      opacity: 0;
+      filter: opacity(0);
       animation: fly-up-separator 1.75s 2.25s cubic-bezier(0, 0.68, 0.59, 1.01) forwards;
     }
   }
@@ -647,7 +647,7 @@
       transform: translateZ(0px);
       & p {
         margin-top: 1rem;
-        opacity: 0;
+        filter: opacity(0);
         animation-delay: 2s;
       }
     }
@@ -658,7 +658,7 @@
       transform: translateX(-50%);
       width: 2rem;
       height: 2rem;
-      opacity: 0;
+      filter: opacity(0);
       animation: fly-up-arrow 1.5s 2.75s cubic-bezier(0.25, 1, 0.5, 1) forwards, arrow-bounce 2s 4s ease-in-out infinite;
     }
   }
@@ -691,10 +691,10 @@
       }
     }
     &.hiddenStart {
-      opacity: 0;
+      filter: opacity(0);
     }
     &:not(.hiddenStart) {
-      opacity: 1;
+      filter: opacity(1);
       transform-origin: center;
 
       & .frame,
@@ -808,7 +808,7 @@
             );
           }
           z-index: 0;
-          opacity: 0;
+          filter: opacity(0);
           transition: all 0.25s ease;
         }
         & .left,
@@ -845,7 +845,7 @@
         .text,
         .right {
           z-index: 1;
-          opacity: 0;
+          filter: opacity(0);
           transition: all 0.25s ease;
         }
         & svg {
