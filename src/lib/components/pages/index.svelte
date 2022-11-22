@@ -21,18 +21,32 @@
     }
     // Extra delay for the last word
     titleWords[titleWords.length - 1].style.animationDelay = `${(titleWords.length - 1) * 0.25 + 0.25}s`;
+    
+    // Random number between 1 and 9
+    currentSquare = Math.floor(Math.random() * 9);
+    let squareElem = section2.getElementsByClassName("squares")[0].getElementsByTagName("div")[currentSquare];
+
+    // JSON List Items
+    let listItems = section2.getElementsByTagName("li");
+    for (let i = 0; i < listItems.length; i++) {
+        listItems[i].style.animationDelay = `${i * 0.25 + 0.25}s`;
+      }
+
     // First scroll event listener
     window.addEventListener("scroll", function () {
       if (firstScroll) return;
       firstScroll = true;
       section2.classList.remove("hiddenStart");
-      scrollArrow.classList.add("animOut");
-      // Random number between 1 and 9
-      currentSquare = Math.floor(Math.random() * 9);
-      let squareElem = section2.getElementsByClassName("squares")[0].getElementsByTagName("div")[currentSquare];
+      scrollArrow.classList.add("remove");
 
       squareElem.classList.add("special");
   
+      // Stagger List Items
+      for (let i = 0; i < listItems.length; i++) {
+        listItems[i].style.animation = 'fade-up 1s ease-in-out forwards';
+      }
+
+
     });
 
     // Elements appear when scrolled into view Event Listener
@@ -502,15 +516,6 @@
           width: 100%;
           height: 100%;
           background: linear-gradient(
-            90deg,
-            rgba($bg1, 0.2) 0%,
-            rgba($bg1, 0.8) 10%,
-            rgba($bg1, 1) 50%,
-            rgba($bg1, 0.8) 90%,
-            rgba($bg1, 0.2) 100%
-          );
-          @media screen and (max-width: $breakpoint-3-1) {
-            background: linear-gradient(
               90deg,
               rgba($bg1, 0.8) 0%,
               rgba($bg1, 0.9) 10%,
@@ -518,13 +523,12 @@
               rgba($bg1, 0.9) 90%,
               rgba($bg1, 0.8) 100%
             );
-          }
           z-index: 0;
           opacity: 0.01;
           transition: all 0.25s ease;
         }
         & .mobileImages{
-          @media screen and (max-width: $breakpoint-3-1) {
+          @media screen and (max-width: $breakpoint-2-1) {
             display: flex;
             justify-content: space-around;
           }

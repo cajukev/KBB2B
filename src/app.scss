@@ -199,9 +199,10 @@ input, textarea {
   }
 }
 
-#section2 li, #section4 li {
+#section2 li {
   margin-top: 0.75rem;
   display: list-item;
+  opacity: 0.01;
 }
 
 // https://dev.to/miacan2021/fade-in-animation-on-scroll-with-intersectionobserver-vanilla-js-4p27
@@ -326,4 +327,8 @@ input, textarea {
 .animOut {
   transition: 0.5s;
   animation: animOut 0.5s ease forwards !important;
+}
+
+.remove{
+  display: none;
 }
