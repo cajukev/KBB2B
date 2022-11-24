@@ -212,7 +212,7 @@ input, textarea {
 // https://dev.to/miacan2021/fade-in-animation-on-scroll-with-intersectionobserver-vanilla-js-4p27
 
 .appear {
-  transition: all 0.8s;
+  transition: transform 0.8s, opacity 0.8s;
   opacity: 0;
   transform: translateY(2rem);
 }
