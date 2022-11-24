@@ -127,7 +127,7 @@
 
 <div class="section hiddenStart" id="section2" bind:this={section2}>
   <div class="frame">
-    <h3><b>{t["section2.title"]}</b></h3>
+    <p class="title"><b>{t["section2.title"]}</b></p>
     <i>{t["section2.hook"]}</i>
     <p>{@html t["section2.list"]}</p>
   </div>
@@ -163,8 +163,8 @@
           <a href={t["section3.1.link"]}>
             {t["section3.1.link"]}
           </a>
-          <a href={t["section3.1.github"]}>
-            <img src="Github.svg" alt="" />
+          <a href={t["section3.1.github"]} >
+            <img src="Github.svg" alt={t["section3.1.title"] + " github"} />
           </a>
         </div>
         <p class="textContent">{@html t["section3.1.content"]}</p>
@@ -206,8 +206,8 @@
           <a href={t["section3.3.link"]}>
             {t["section3.3.link"]}
           </a>
-          <a href={t["section3.3.github"]}>
-            <img src="Github.svg" alt="" />
+          <a href={t["section3.3.github"]} >
+            <img src="Github.svg" alt={t["section3.3.title"] + " github"} />
           </a>
         </div>
         <p class="textContent">{@html t["section3.3.content"]}</p>
@@ -245,11 +245,11 @@
       <div class="text">
         <p class="title">{t["section3.2.title"]}</p>
         <div class="links">
-          <a href={t["section3.2.link"]}>
+          <a href={t["section3.2.link"]} >
             {t["section3.2.link"]}
           </a>
-          <a href={t["section3.2.github"]}>
-            <img src="Github.svg" alt="" />
+          <a href={t["section3.2.github"]} >
+            <img src="Github.svg" alt={t["section3.2.title"] + " github"} />
           </a>
         </div>
 
@@ -315,21 +315,11 @@
 <div class="section" id="section6">
   <h2 class="appear">{t["section6.title"]}</h2>
   <div class="contactButtons">
-    <a href="mailto:kevin.brousseau98@gmail.com" class="appear">
-      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path
-          d="M12.042 23.296C4.229 23.296 0 18.42 0 12.125C0 5.398 4.762 0 13.276 0C19.49 0 24 4.038 24 9.601C24 18.313 13.67 20.613 14.188 15.643C13.478 16.751 12.334 17.997 10.135 17.997C7.619 17.997 6.055 16.155 6.055 13.19C6.055 8.746 8.976 4.991 12.434 4.991C14.093 4.991 15.234 5.867 15.711 7.212L16.175 5.58H18.513C18.269 6.412 16.192 14.107 16.192 14.107C15.544 16.773 17.542 16.82 19.314 15.404C22.643 12.824 22.815 6.077 18.316 3.263C13.495 0.372 2.521 2.161 2.521 11.956C2.521 17.567 6.471 21.337 12.35 21.337C15.786 21.337 17.892 20.407 19.645 19.389L20.822 21.087C19.111 22.053 16.361 23.296 12.042 23.296ZM9.698 8.991C8.983 10.331 8.521 12.067 8.521 13.415C8.521 17.025 12.043 17.048 13.773 13.654C14.485 12.26 14.944 10.483 14.944 9.125C14.944 6.208 11.449 5.691 9.698 8.991Z"
-          fill="white "
-        />
-      </svg>
+    <a href="mailto:kevin.brousseau98@gmail.com" class="appear" >
+      <img src="at.svg" alt="email">
     </a>
-    <a href="tel:514-550-7051" class="appear">
-      <svg viewBox="0 0 14 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path
-          d="M14 2C14 0.896 13.104 0 12 0H2C0.896 0 0 0.896 0 2V22C0 23.104 0.896 24 2 24H12C13.104 24 14 23.104 14 22V2ZM5.5 2H8.5C8.776 2 9 2.224 9 2.5C9 2.776 8.776 3 8.5 3H5.5C5.224 3 5 2.776 5 2.5C5 2.224 5.224 2 5.5 2ZM7 22C6.447 22 6 21.552 6 21C6 20.448 6.447 20 7 20C7.552 20 7.999 20.448 7.999 21C7.999 21.552 7.552 22 7 22ZM12 19H2V4.976H12V19Z"
-          fill="white"
-        />
-      </svg>
+    <a href="tel:514-550-7051" class="appear" >
+      <img src="Phone.svg" alt="phone">
     </a>
   </div>
 </div>
@@ -438,11 +428,10 @@
       width: fit-content;
       max-width: 100%;
       justify-self: center;
-      & h3,
-      p {
+      & p {
         max-width: 30rem;
       }
-      & h3 {
+      & .title {
         margin-bottom: 1.25rem;
       }
       & p {
@@ -663,7 +652,7 @@
         background: linear-gradient(135deg, #ff9c41 0%, #f27c0f 100%);
         box-shadow: 0px 0px 3rem rgba(233, 111, 0, 0.6);
         border-radius: 25%;
-        & svg {
+        & img {
           width: 3rem;
           height: 3rem;
         }

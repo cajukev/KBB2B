@@ -205,18 +205,22 @@ input, textarea {
   opacity: 0.01;
 }
 
+#section4 ul, #section2 ul {
+  margin-left: 1.2rem;
+}
+
 // https://dev.to/miacan2021/fade-in-animation-on-scroll-with-intersectionobserver-vanilla-js-4p27
 
 .appear {
-  pointer-events: none;
   transition: all 0.8s;
-  opacity: 0.01;;
+  opacity: 0;
+  transform: translateY(2rem);
 }
 
 .appear.inview {
   pointer-events: all;
-  transition-delay: 0.3s;
-  animation: fade-up 1s 0.15s cubic-bezier(0, 0.68, 0.59, 1.01) forwards;
+  opacity: 1;
+  transform: translateY(0rem);
 }
 
 .appear2 {
