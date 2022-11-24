@@ -6,6 +6,7 @@
   let firstScroll = false;
 
   let section2;
+  let section5;
   let scrollArrow;
 
   let currentSquare = 0;
@@ -21,16 +22,10 @@
     }
     // Extra delay for the last word
     titleWords[titleWords.length - 1].style.animationDelay = `${(titleWords.length - 1) * 0.25 + 0.25}s`;
-    
+
     // Random number between 1 and 9
     currentSquare = Math.floor(Math.random() * 9);
-    let squareElem = section2.getElementsByClassName("squares")[0].getElementsByTagName("div")[currentSquare];
-
-    // JSON List Items
-    let listItems = section2.getElementsByTagName("li");
-    for (let i = 0; i < listItems.length; i++) {
-        listItems[i].style.animationDelay = `${i * 0.25 + 0.25}s`;
-      }
+    let squareElem = section5.getElementsByClassName("squares")[0].getElementsByTagName("div")[currentSquare];
 
     // First scroll event listener
     window.addEventListener("scroll", function () {
@@ -40,13 +35,12 @@
       scrollArrow.classList.add("remove");
 
       squareElem.classList.add("special");
-  
-      // Stagger List Items
+
+      let listItems = section2.getElementsByTagName("li");
       for (let i = 0; i < listItems.length; i++) {
-        listItems[i].style.animation = 'fade-up 1s ease-in-out forwards';
+        listItems[i].style.animation = "fade-up 1s ease-in-out forwards";
+        listItems[i].style.animationDelay = `${i * 0.25 + 0.25}s`;
       }
-
-
     });
 
     // Elements appear when scrolled into view Event Listener
@@ -69,16 +63,16 @@
     let timePassed = new Date().getTime() - timeStart;
 
     document
-      .getElementById("section2")
+      .getElementById("section5")
       .getElementsByClassName("squares")[0]
       .getElementsByTagName("div")
       [currentSquare].classList.remove("special");
     document
-      .getElementById("section2")
+      .getElementById("section5")
       .getElementsByClassName("squares")[0]
       .getElementsByTagName("div")
       [index].classList.add("special");
-    document.getElementById("section2").getElementsByClassName("squares")[0].getElementsByTagName("div")[
+    document.getElementById("section5").getElementsByClassName("squares")[0].getElementsByTagName("div")[
       index
     ].style.animationDelay = `${(-timePassed / 1000) % 6}s`;
     currentSquare = index;
@@ -133,28 +127,9 @@
 
 <div class="section hiddenStart" id="section2" bind:this={section2}>
   <div class="frame">
-    <h3>{t["section2.title"]}</h3>
-    <i>{t["hook"]}</i>
+    <h3><b>{t["section2.title"]}</b></h3>
+    <i>{t["section2.hook"]}</i>
     <p>{@html t["section2.list"]}</p>
-  </div>
-  <div class="flavour">
-    <div class="squares">
-      <div class="sq1" on:click={() => onSqClick(0)} />
-      <div class="sq2" on:click={() => onSqClick(1)} />
-      <div class="sq3" on:click={() => onSqClick(2)} />
-      <div class="sq4" on:click={() => onSqClick(3)} />
-      <div class="sq5" on:click={() => onSqClick(4)} />
-      <div class="sq6" on:click={() => onSqClick(5)} />
-      <div class="sq7" on:click={() => onSqClick(6)} />
-      <div class="sq8" on:click={() => onSqClick(7)} />
-      <div class="sq9" on:click={() => onSqClick(8)} />
-    </div>
-    <i>{t["section2.quote"]}</i>
-    <!-- <div class="img-wrapper">
-      <img src="site-1-400.jpg" alt="img1" class="img1" />
-      <img src="site-2-400.jpg" alt="img2" class="img2" />
-      <img src="site-3-400.jpg" alt="img3" class="img3" />
-    </div> -->
   </div>
 </div>
 
@@ -184,7 +159,14 @@
       </div>
       <div class="text">
         <p class="title">{t["section3.1.title"]}</p>
-        <a href={t["section3.1.link"]}>{t["section3.1.link"]}</a>
+        <div class="links">
+          <a href={t["section3.1.link"]}>
+            {t["section3.1.link"]}
+          </a>
+          <a href={t["section3.1.github"]}>
+            <img src="Github.svg" alt="" />
+          </a>
+        </div>
         <p class="textContent">{@html t["section3.1.content"]}</p>
         <div class="mobileImages ubp2">
           <img src="/Logos/svelte.svg" alt="" />
@@ -193,6 +175,49 @@
       </div>
       <div class="right">
         <img src="/Logos/supabase.svg" alt="" />
+      </div>
+    </div>
+  </div>
+
+  <div class="frame appear" id="site3">
+    <picture>
+      <source srcset="site-3-400.webp" media="(max-width: 450px)" type="image/webp" />
+      <source srcset="site-3-400.jpg" media="(max-width: 450px)" type="image/jpeg" />
+      <source srcset="site-3-800.webp" media="(max-width: 800px)" type="image/webp" />
+      <source srcset="site-3-800.jpg" media="(max-width: 800px)" type="image/jpeg" />
+      <source srcset="site-3-1200.webp" media="(max-width: 1200px)" type="image/webp" />
+      <source srcset="site-3-1200.jpg" media="(max-width: 1200px)" type="image/jpeg" />
+      <source srcset="site-3-1600.webp" type="image/webp" />
+      <img src="site-3-1600.jpg" alt="site2" loading="lazy" class="preview" />
+    </picture>
+    <div
+      class="content"
+      on:pointerdown={() => siteHover(1)}
+      on:pointerover={() => siteHover(1)}
+      on:mouseleave={() => siteLeave(1)}
+    >
+      <div class="bg" />
+      <div class="left">
+        <img src="/Logos/react.svg" alt="" />
+      </div>
+      <div class="text">
+        <p class="title">{t["section3.3.title"]}</p>
+        <div class="links">
+          <a href={t["section3.3.link"]}>
+            {t["section3.3.link"]}
+          </a>
+          <a href={t["section3.3.github"]}>
+            <img src="Github.svg" alt="" />
+          </a>
+        </div>
+        <p class="textContent">{@html t["section3.3.content"]}</p>
+        <div class="mobileImages ubp2">
+          <img src="/Logos/react.svg" alt="" />
+          <img src="/Logos/spring.svg" alt="" />
+        </div>
+      </div>
+      <div class="right">
+        <img src="/Logos/spring.svg" alt="" />
       </div>
     </div>
   </div>
@@ -209,18 +234,26 @@
     </picture>
     <div
       class="content"
-      on:pointerdown={() => siteHover(1)}
-      on:pointerover={() => siteHover(1)}
-      on:mouseleave={() => siteLeave(1)}
+      on:pointerdown={() => siteHover(2)}
+      on:pointerover={() => siteHover(2)}
+      on:mouseleave={() => siteLeave(2)}
     >
       <div class="bg" />
       <div class="left">
         <img src="/Logos/vue.svg" alt="" />
       </div>
       <div class="text">
-        <p class="title">{t["section3.1.title"]}</p>
-        <a href={t["section3.1.link"]}>{t["section3.1.link"]}</a>
-        <p class="textContent">{@html t["section3.1.content"]}</p>
+        <p class="title">{t["section3.2.title"]}</p>
+        <div class="links">
+          <a href={t["section3.2.link"]}>
+            {t["section3.2.link"]}
+          </a>
+          <a href={t["section3.2.github"]}>
+            <img src="Github.svg" alt="" />
+          </a>
+        </div>
+
+        <p class="textContent">{@html t["section3.2.content"]}</p>
         <div class="mobileImages ubp2">
           <img src="/Logos/vue.svg" alt="" />
           <img src="/Logos/css.svg" alt="" />
@@ -231,84 +264,74 @@
       </div>
     </div>
   </div>
-  <div class="frame appear" id="site3">
-    <picture>
-      <source srcset="site-3-400.webp" media="(max-width: 450px)" type="image/webp" />
-      <source srcset="site-3-400.jpg" media="(max-width: 450px)" type="image/jpeg" />
-      <source srcset="site-3-800.webp" media="(max-width: 800px)" type="image/webp" />
-      <source srcset="site-3-800.jpg" media="(max-width: 800px)" type="image/jpeg" />
-      <source srcset="site-3-1200.webp" media="(max-width: 1200px)" type="image/webp" />
-      <source srcset="site-3-1200.jpg" media="(max-width: 1200px)" type="image/jpeg" />
-      <source srcset="site-3-1600.webp" type="image/webp" />
-      <img src="site-3-1600.jpg" alt="site2" loading="lazy" class="preview" />
-    </picture>
-    <div
-      class="content"
-      on:pointerdown={() => siteHover(2)}
-      on:pointerover={() => siteHover(2)}
-      on:mouseleave={() => siteLeave(2)}
-    >
-      <div class="bg" />
-      <div class="left">
-        <img src="/Logos/react.svg" alt="" />
-      </div>
-      <div class="text">
-        <p class="title">{t["section3.1.title"]}</p>
-        <a href={t["section3.1.link"]}>{t["section3.1.link"]}</a>
-        <p class="textContent">{@html t["section3.1.content"]}</p>
-        <div class="mobileImages ubp2">
-          <img src="/Logos/react.svg" alt="" />
-          <img src="/Logos/spring.svg" alt="" />
-        </div>
-      </div>
-      <div class="right">
-        <img src="/Logos/spring.svg" alt="" />
-      </div>
-    </div>
-  </div>
 </div>
-
 <div class="section" id="section4">
   <h2 class="appear">{t["section4.title"]}</h2>
   <div class="content">
     <div class="frame appear">
       <h2>{t["section4.1.title"]}</h2>
       <p class="description">{@html t["section4.1.description"]}</p>
-      <p>{t["section4.includes"]}</p>
+      <p class="learned"><i>{t["section4.learned"]}</i></p>
       <p>{@html t["section4.1.content"]}</p>
     </div>
     <div class="frame frame-special appear">
       <h2>{t["section4.2.title"]}</h2>
       <p class="description">{@html t["section4.2.description"]}</p>
-      <p>{t["section4.includes"]}</p>
+      <p class="learned"><i>{t["section4.learned"]}</i></p>
       <p>{@html t["section4.2.content"]}</p>
     </div>
     <div class="frame appear">
       <h2>{t["section4.3.title"]}</h2>
       <p class="description">{@html t["section4.3.description"]}</p>
-      <p>{t["section4.includes"]}</p>
+      <p class="learned"><i>{t["section4.learned"]}</i></p>
       <p>{@html t["section4.3.content"]}</p>
     </div>
     <div class="frame frame-special appear">
       <h2>{t["section4.4.title"]}</h2>
       <p class="description">{@html t["section4.4.description"]}</p>
-      <p>{t["section4.includes"]}</p>
+      <p class="learned"><i>{t["section4.learned"]}</i></p>
       <p>{@html t["section4.4.content"]}</p>
     </div>
   </div>
 </div>
 
-<div class="section" id="section5">
-  <h2 class="appear">{t["section5.title"]}</h2>
-  <form class="appear">
-    <label for="name">{t["section5.form.name.label"]}</label>
-    <input type="text" id="name" name="name" placeholder={t["section5.form.name.placeholder"]} required />
-    <label for="comm">{t["section5.form.comm.label"]}</label>
-    <input type="email" id="comm" name="comm" placeholder={t["section5.form.comm.placeholder"]} required />
-    <label for="message">{t["section5.form.times.label"]}</label>
-    <textarea id="message" name="message" placeholder={t["section5.form.times.placeholder"]} required />
-  </form>
-  <button class="btn btn-primary appear">{t["send"]}</button>
+<div class="section" id="section5" bind:this={section5}>
+  <div class="flavour">
+    <div class="squares appear">
+      <div class="sq1" on:click={() => onSqClick(0)} />
+      <div class="sq2" on:click={() => onSqClick(1)} />
+      <div class="sq3" on:click={() => onSqClick(2)} />
+      <div class="sq4" on:click={() => onSqClick(3)} />
+      <div class="sq5" on:click={() => onSqClick(4)} />
+      <div class="sq6" on:click={() => onSqClick(5)} />
+      <div class="sq7" on:click={() => onSqClick(6)} />
+      <div class="sq8" on:click={() => onSqClick(7)} />
+      <div class="sq9" on:click={() => onSqClick(8)} />
+    </div>
+    <i class="appear">{t["section5.quote"]}</i>
+  </div>
+</div>
+
+<div class="section" id="section6">
+  <h2 class="appear">{t["section6.title"]}</h2>
+  <div class="contactButtons">
+    <a href="mailto:kevin.brousseau98@gmail.com" class="appear">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M12.042 23.296C4.229 23.296 0 18.42 0 12.125C0 5.398 4.762 0 13.276 0C19.49 0 24 4.038 24 9.601C24 18.313 13.67 20.613 14.188 15.643C13.478 16.751 12.334 17.997 10.135 17.997C7.619 17.997 6.055 16.155 6.055 13.19C6.055 8.746 8.976 4.991 12.434 4.991C14.093 4.991 15.234 5.867 15.711 7.212L16.175 5.58H18.513C18.269 6.412 16.192 14.107 16.192 14.107C15.544 16.773 17.542 16.82 19.314 15.404C22.643 12.824 22.815 6.077 18.316 3.263C13.495 0.372 2.521 2.161 2.521 11.956C2.521 17.567 6.471 21.337 12.35 21.337C15.786 21.337 17.892 20.407 19.645 19.389L20.822 21.087C19.111 22.053 16.361 23.296 12.042 23.296ZM9.698 8.991C8.983 10.331 8.521 12.067 8.521 13.415C8.521 17.025 12.043 17.048 13.773 13.654C14.485 12.26 14.944 10.483 14.944 9.125C14.944 6.208 11.449 5.691 9.698 8.991Z"
+          fill="white "
+        />
+      </svg>
+    </a>
+    <a href="tel:514-550-7051" class="appear">
+      <svg viewBox="0 0 14 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M14 2C14 0.896 13.104 0 12 0H2C0.896 0 0 0.896 0 2V22C0 23.104 0.896 24 2 24H12C13.104 24 14 23.104 14 22V2ZM5.5 2H8.5C8.776 2 9 2.224 9 2.5C9 2.776 8.776 3 8.5 3H5.5C5.224 3 5 2.776 5 2.5C5 2.224 5.224 2 5.5 2ZM7 22C6.447 22 6 21.552 6 21C6 20.448 6.447 20 7 20C7.552 20 7.999 20.448 7.999 21C7.999 21.552 7.552 22 7 22ZM12 19H2V4.976H12V19Z"
+          fill="white"
+        />
+      </svg>
+    </a>
+  </div>
 </div>
 
 <style lang="scss">
@@ -385,36 +408,17 @@
       width: 2rem;
       height: 2rem;
       opacity: 0.01;
-      animation: fly-up-arrow 1.25s 2s cubic-bezier(0, 0.68, 0.59, 1.01) forwards, arrow-bounce 2s 3.25s ease-in-out infinite;
+      animation: fly-up-arrow 1.25s 2s cubic-bezier(0, 0.68, 0.59, 1.01) forwards,
+        arrow-bounce 2s 3.25s ease-in-out infinite;
     }
   }
   #section2 {
-    & .flavour {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.5rem;
-      justify-self: center;
-      & .squares {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: repeat(3, 1fr);
-        gap: 1rem;
-        & div {
-          cursor: pointer;
-          transition: transform 0.25s ease;
-          &:hover:not(.special) {
-            transform: scale(1.1);
-          }
-        }
-        & .special {
-          animation-duration: 6s;
-          animation-delay: 0s;
-        }
-      }
-      & i {
-        margin-top: 1.5rem;
-      }
+    padding: 2rem;
+    @media screen and (max-width: $breakpoint-3-1) {
+      padding: 3rem 1rem;
+    }
+    @media screen and (max-width: $breakpoint-2-1) {
+      padding: 3rem 0.5rem;
     }
     &.hiddenStart {
       opacity: 0.01;
@@ -423,19 +427,12 @@
       opacity: 1;
       transform-origin: center;
 
-      & .frame,
-      .flavour {
+      & .frame {
         animation: fly-up 1s 0s cubic-bezier(0, 0.68, 0.59, 1.01) forwards;
       }
     }
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-    padding: 2rem;
-    @media screen and (max-width: $breakpoint-4-1) {
-      grid-template-columns: 1fr;
-      padding: 3rem 0rem;
-    }
+    place-content: center;
     & .frame {
       padding: 1.5rem;
       width: fit-content;
@@ -455,29 +452,6 @@
         margin-top: 0.25rem;
       }
     }
-    & .images {
-      place-self: center;
-      & .img-wrapper {
-        display: flex;
-        gap: 1rem;
-        margin-top: 1rem;
-        @media screen and (max-width: $breakpoint-2-1) {
-          flex-direction: column;
-        }
-        & img {
-          width: clamp(10rem, 11vw, 14.5rem);
-
-          aspect-ratio: 2/3;
-          object-fit: cover;
-          border: 1px solid $accent-color2;
-          box-shadow: $box-shadow-1;
-          @media screen and (max-width: $breakpoint-2-1) {
-            width: 100%;
-            aspect-ratio: 1/1;
-          }
-        }
-      }
-    }
   }
   #section3 {
     display: flex;
@@ -493,9 +467,6 @@
       width: 100%;
       margin-top: 4rem;
       position: relative;
-      & img {
-        filter: drop-shadow(0px 0.25rem 0.5rem rgba(0, 0, 0, 0.3));
-      }
       & img.preview {
         position: absolute;
         top: 0;
@@ -516,21 +487,26 @@
           width: 100%;
           height: 100%;
           background: linear-gradient(
-              90deg,
-              rgba($bg1, 0.8) 0%,
-              rgba($bg1, 0.9) 10%,
-              rgba($bg1, 1) 50%,
-              rgba($bg1, 0.9) 90%,
-              rgba($bg1, 0.8) 100%
-            );
+            90deg,
+            rgba($bg1, 0.8) 0%,
+            rgba($bg1, 0.9) 10%,
+            rgba($bg1, 1) 50%,
+            rgba($bg1, 0.9) 90%,
+            rgba($bg1, 0.8) 100%
+          );
           z-index: 0;
           opacity: 0.01;
           transition: all 0.25s ease;
         }
-        & .mobileImages{
+        & .mobileImages {
           @media screen and (max-width: $breakpoint-2-1) {
             display: flex;
             justify-content: space-around;
+          }
+          & img {
+            filter: drop-shadow(0px 0.25rem 0.5rem rgba(0, 0, 0, 0.3));
+            height: clamp(10rem, 20vw, 18rem);
+            padding: 1rem;
           }
         }
         & .left,
@@ -541,6 +517,11 @@
           height: 100%;
           @media screen and (max-width: $breakpoint-2-1) {
             display: none;
+          }
+          & img {
+            filter: drop-shadow(0px 0.25rem 0.5rem rgba(0, 0, 0, 0.3));
+            height: clamp(10rem, 20vw, 18rem);
+            padding: 1rem;
           }
         }
         & .text {
@@ -555,8 +536,18 @@
             font-size: $subheader-font-size;
             font-weight: 700;
           }
-          & a {
+          & .links {
             margin-top: 0.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            & .siteLink {
+            }
+            & img {
+              width: 1.5rem;
+              height: 1.5rem;
+              margin-left: 1rem;
+            }
           }
           & .textContent {
             margin-top: 1.5rem;
@@ -569,10 +560,6 @@
           z-index: 1;
           opacity: 0.01;
           transition: all 0.25s ease;
-        }
-        & img {
-          height: clamp(10rem, 20vw, 18rem);
-          padding: 1rem;
         }
       }
     }
@@ -606,6 +593,9 @@
         & h2 {
           margin-bottom: 1.5rem;
         }
+        & .learned {
+          margin-bottom: 0.5rem;
+        }
         & .description {
           margin-bottom: 1.5rem;
         }
@@ -621,27 +611,63 @@
     @media screen and (max-width: $breakpoint-2-1) {
       padding: 3rem 0.5rem;
     }
+    & .flavour {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      justify-self: center;
+      & .squares {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        gap: 1rem;
+        & div {
+          cursor: pointer;
+          transition: transform 0.25s ease;
+          &:hover:not(.special) {
+            transform: scale(1.1);
+          }
+        }
+        & .special {
+          animation-duration: 6s;
+          animation-delay: 0s;
+        }
+      }
+      & i {
+        margin-top: 1.5rem;
+      }
+    }
+  }
+
+  #section6 {
+    padding: 2rem;
+    @media screen and (max-width: $breakpoint-3-1) {
+      padding: 3rem 1rem;
+    }
+    @media screen and (max-width: $breakpoint-2-1) {
+      padding: 3rem 0.5rem;
+    }
     display: flex;
     flex-direction: column;
     align-items: center;
-    & form {
-      margin-top: 3rem;
+
+    & .contactButtons {
       display: flex;
-      flex-direction: column;
-      max-width: 35rem;
+      justify-content: center;
       width: 100%;
-      & label {
-        margin-top: 1rem;
-        margin-bottom: 0.25rem;
+      margin-top: 2rem;
+      gap: 4rem;
+      & a {
+        padding: 1.5rem;
+        background: linear-gradient(135deg, #ff9c41 0%, #f27c0f 100%);
+        box-shadow: 0px 0px 3rem rgba(233, 111, 0, 0.6);
+        border-radius: 25%;
+        & svg {
+          width: 3rem;
+          height: 3rem;
+        }
       }
-      & textArea {
-        resize: none;
-        height: 10rem;
-      }
-    }
-    & button {
-      margin-top: 1rem;
-      width: fit-content;
     }
   }
 </style>
