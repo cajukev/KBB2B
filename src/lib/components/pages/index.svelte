@@ -135,6 +135,50 @@
 
 <div class="section" id="section3">
   <h2 class="appear">{t["section3.title"]}</h2>
+  <div class="frame appear" id="site4">
+    <picture>
+      <source srcset="site-4-400.webp" media="(max-width: 450px)" type="image/webp" />
+      <source srcset="site-4-400.jpg" media="(max-width: 450px)" type="image/jpeg" />
+      <source srcset="site-4-800.webp" media="(max-width: 800px)" type="image/webp" />
+      <source srcset="site-4-800.jpg" media="(max-width: 800px)" type="image/jpeg" />
+      <source srcset="site-4-1200.webp" media="(max-width: 1200px)" type="image/webp" />
+      <source srcset="site-4-1200.jpg" media="(max-width: 1200px)" type="image/jpeg" />
+      <source srcset="site-4-1600.webp" type="image/webp" />
+      <img src="site-4-1600.jpg" alt="site1" loading="lazy" class="preview" />
+    </picture>
+    <div
+      class="content"
+      on:pointerdown={() => siteHover(0)}
+      on:pointerover={() => siteHover(0)}
+      on:mouseleave={() => siteLeave(0)}
+    >
+      <div class="bg" />
+      <div class="left">
+        <img src="/Logos/svelte.svg" alt="" />
+      </div>
+      <div class="text">
+        <p class="title">{t["section3.4.title"]}</p>
+        <div class="links">
+          <a href={t["section3.4.link"]} >
+            {t["section3.4.link"]}
+          </a>
+          <a href={t["section3.4.github"]} >
+            <img src="Github.svg" alt={t["section3.4.title"] + " github"} />
+          </a>
+        </div>
+
+        <p class="textContent">{@html t["section3.4.content"]}</p>
+        <div class="mobileImages ubp2">
+          <img src="/Logos/svelte.svg" alt="" />
+          <img src="/Logos/supabase.svg" alt="" />
+        </div>
+      </div>
+      <div class="right">
+        <img src="/Logos/supabase.svg" alt="" />
+      </div>
+    </div>
+  </div>
+
   <div class="frame appear" id="site1">
     <!-- Responsive picture images with webp option -->
     <picture>
@@ -149,9 +193,9 @@
     </picture>
     <div
       class="content"
-      on:pointerdown={() => siteHover(0)}
-      on:pointerover={() => siteHover(0)}
-      on:mouseleave={() => siteLeave(0)}
+      on:pointerdown={() => siteHover(1)}
+      on:pointerover={() => siteHover(1)}
+      on:mouseleave={() => siteLeave(1)}
     >
       <div class="bg" />
       <div class="left">
@@ -188,13 +232,13 @@
       <source srcset="site-3-1200.webp" media="(max-width: 1200px)" type="image/webp" />
       <source srcset="site-3-1200.jpg" media="(max-width: 1200px)" type="image/jpeg" />
       <source srcset="site-3-1600.webp" type="image/webp" />
-      <img src="site-3-1600.jpg" alt="site2" loading="lazy" class="preview" />
+      <img src="site-3-1600.jpg" alt="site3" loading="lazy" class="preview" />
     </picture>
     <div
       class="content"
-      on:pointerdown={() => siteHover(1)}
-      on:pointerover={() => siteHover(1)}
-      on:mouseleave={() => siteLeave(1)}
+      on:pointerdown={() => siteHover(2)}
+      on:pointerover={() => siteHover(2)}
+      on:mouseleave={() => siteLeave(2)}
     >
       <div class="bg" />
       <div class="left">
@@ -234,9 +278,9 @@
     </picture>
     <div
       class="content"
-      on:pointerdown={() => siteHover(2)}
-      on:pointerover={() => siteHover(2)}
-      on:mouseleave={() => siteLeave(2)}
+      on:pointerdown={() => siteHover(3)}
+      on:pointerover={() => siteHover(3)}
+      on:mouseleave={() => siteLeave(3)}
     >
       <div class="bg" />
       <div class="left">
@@ -463,7 +507,7 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
-        object-position: top left;
+        object-position: center;
       }
       & .content {
         position: relative;
